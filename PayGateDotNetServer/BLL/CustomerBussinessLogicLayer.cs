@@ -31,7 +31,7 @@ namespace PayGateDotNetServer.BLL
             return customers;
         }
 
-        public async Task<Customer> AddContact(CustomerRequest customerRequest)
+        public async Task<Customer> AddCustomer(CustomerRequest customerRequest)
         {
             var customer = new Customer()
             {
@@ -66,7 +66,24 @@ namespace PayGateDotNetServer.BLL
             }
             return customer;
         }
-        
+
+        public async Task<Customer> UpdateCustomerState(int Id)
+        {
+            var customer = await dBContext.Customers.FindAsync(Id);
+            
+            if (customer != null)
+            {
+                if (customer.IsActive)
+                    customer.IsActive = false;
+                else
+                    customer.IsActive = true;
+
+                await dBContext.SaveChangesAsync();
+
+            }
+            return customer;
+        }
+
         public async Task<bool> DeleteCustomer(int id)
         {
             var customer = await dBContext.Customers.FindAsync(id);
@@ -75,6 +92,7 @@ namespace PayGateDotNetServer.BLL
             if(customer != null)
             {
                 dBContext.Remove(customer);
+                await dBContext.SaveChangesAsync();
                 isDeleted = true;
             }
             return isDeleted;
