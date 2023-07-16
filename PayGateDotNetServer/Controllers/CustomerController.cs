@@ -29,7 +29,7 @@ namespace PayGateDotNetServer.Controllers
         }
 
         [HttpGet]
-        [Route("getCustomer/{id:int})")]
+        [Route("getCustomer/{id:int}")]
         public IActionResult GetCustomer([FromRoute] int id)
         {
 
@@ -46,11 +46,11 @@ namespace PayGateDotNetServer.Controllers
         }
 
         [HttpPost]
-        [Route("addCustomers")]
-        public IActionResult AddCustomers(CustomerRequest addCustomerRequest)
+        [Route("addCustomer")]
+        public IActionResult AddCustomer(CustomerRequest addCustomerRequest)
         {
             var customer = new CustomerBussinessLogicLayer(this.dBContext);
-            return Ok(customer.AddContact(addCustomerRequest).Result);
+            return Ok(customer.AddCustomer(addCustomerRequest).Result);
         }
          
         [HttpPut] 
@@ -69,7 +69,7 @@ namespace PayGateDotNetServer.Controllers
         }
 
         [HttpDelete] 
-        [Route("(deleteCustomer/id:int)")]
+        [Route("(deleteCustomer/{id:int}")]
         public IActionResult DeleteCustomer([FromRoute] int id)
         {
 
