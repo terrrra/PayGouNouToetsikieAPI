@@ -19,19 +19,18 @@ namespace PayGateDotNetServer.Controllers
             this.dBContext = dBContext;
         }
 
-
         [HttpGet, Route("getAccount")]
         public IActionResult GetAllAccounts()
         {
             var account = new AccountBusinessLogicLayer(this.dBContext);
-            return Ok(account.GetAllAcounts());
+            return Ok(account.GetAllAcounts().Result);
         }
 
-        [HttpPost, Route("addAccount")]
+        [HttpPost, Route("createAccount")]
         public IActionResult AddAccount(AccountRequest addAccountRequest)
         {
             var account = new AccountBusinessLogicLayer(this.dBContext);
-            return Ok(account.AddAccount(addAccountRequest));
+            return Ok(account.AddAccount(addAccountRequest).Result);
         }
     }
 }
