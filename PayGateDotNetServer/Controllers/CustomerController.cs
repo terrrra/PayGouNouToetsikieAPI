@@ -65,11 +65,26 @@ namespace PayGateDotNetServer.Controllers
             {
                 return Ok(updatedCustomer.Result);
             }
-            return NotFound();
+            return NotFound("Customer Not Found Item Not updated!");
+        }
+
+        [HttpPut]
+        [Route("updatestate/{id:int}")]
+        public IActionResult UpdateCustomerState([FromRoute] int id)
+        {
+            var customer = new CustomerBussinessLogicLayer(this.dBContext);
+
+            var updatedCustomer = customer.UpdateCustomerState(id);
+
+            if (updatedCustomer.Result != null)
+            {
+                return Ok(updatedCustomer.Result);
+            }
+            return NotFound("Customer Not Found State Not Updated!");
         }
 
         [HttpDelete] 
-        [Route("(deleteCustomer/{id:int}")]
+        [Route("deleteCustomer/{id:int}")]
         public IActionResult DeleteCustomer([FromRoute] int id)
         {
 
@@ -79,10 +94,10 @@ namespace PayGateDotNetServer.Controllers
 
             if (deletedcustomer.Result == false)
             {
-                return NotFound();
+                return NotFound("Customer Not Found Record not Deleted");
             }
 
-            return Ok();
+            return Ok("Item Deleted thank you");
         }
     }
 }
