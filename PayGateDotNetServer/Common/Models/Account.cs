@@ -13,7 +13,7 @@ namespace PayGateDotNetServer.Common.Models
         public int Id { get; set; }
         public AccountType AccountType{get; set;}
         public double MonthlyFee { get; set; }
-        //public ICollection<CustomerAccount> Accounts { get; set; }
+        public ICollection<CustomerAccount> Accounts { get; set; }
         //public ICollection<Transaction> AccountTransactions { get; set; }
     }
 }
