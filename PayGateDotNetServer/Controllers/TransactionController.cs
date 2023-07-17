@@ -10,7 +10,7 @@ namespace PayGateDotNetServer.Controllers
     [ApiController]
     public class TransactionController : Controller
     {
-        [HttpGet, Route("addCustomer")]
+        [HttpGet, Route("getCustomerAccounts")]
         public string AddCustomer()
         {
             return "Pong";
