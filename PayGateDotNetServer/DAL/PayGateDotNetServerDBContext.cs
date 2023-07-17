@@ -1,17 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PayGateDotNetServer.Common.Models;
+using System.Security.Claims;
 
 namespace PayGateDotNetServer.DAL
 {
     public class PayGateDotNetServerDBContext : DbContext
     {
-        public PayGateDotNetServerDBContext(DbContextOptions options) : base(options) { 
-            
+        public PayGateDotNetServerDBContext(DbContextOptions options) : base(options) 
+        { 
+                
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CustomerAccount>().HasKey(vf => new { vf.CustomerId, vf.AccountId });
+
         }
 
         public DbSet<Customer> Customers { get; set; }
