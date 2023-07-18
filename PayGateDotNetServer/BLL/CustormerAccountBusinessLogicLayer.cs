@@ -18,6 +18,7 @@ namespace PayGateDotNetServer.BLL
         public CustormerAccountBusinessLogicLayer(PayGateDotNetServerDBContext dBContext)
         {
             this.dBContext = dBContext;
+            this.customer = new CustomerBussinessLogicLayer(dBContext);
         }
 
         public async Task<CustomerAccount> AddCustomerAccount(CustomerAccountRequest customerAccountRequest)
