@@ -11,10 +11,11 @@ namespace PayGateDotNetServer.Controllers
     [ApiController]
     public class HealthController : ControllerBase
     {
-        [HttpGet, Route("ping")]
-        public string Get()
+        [HttpGet] 
+        [Route("ping")]
+        public string Haal()
         {
-            return "Pong";
+            return "Lekker vrus n gesond";
         }
     }
 }
