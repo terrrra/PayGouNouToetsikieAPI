@@ -26,20 +26,22 @@ namespace PayGateDotNetServer.BLL
         public async Task<Transaction> AddTransaction(TransactionRequest transactionRequest)
         {
             var customerAccount = dBContext.CustomerAccounts.Find(transactionRequest.CustomerId, transactionRequest.AccountId);
-            Transaction transaction = new Transaction();
+            
             if (customerAccount != null)
             {
+                Transaction transaction = new Transaction();
+
                 transaction.TransactionType = transactionRequest.TransactionType;
                 transaction.Amount = transactionRequest.Amount;
                 transaction.AccountId = transactionRequest.AccountId;
                 transaction.CustomerId = transactionRequest.CustomerId;
                 transaction.Date = transactionRequest.Date;
                 transaction.TransactionReference = transactionRequest.TransactionReference;
-               
+
                 await dBContext.Transactions.AddAsync(transaction);
-                
+
                 //Altering the Balance
-                if(transactionRequest.TransactionType == Common.Enumerations.TransactionType.CR)
+                if (transactionRequest.TransactionType == Common.Enumerations.TransactionType.CR)
                 {
                     customerAccount.Balance += transactionRequest.Amount;
                     dBContext.CustomerAccounts.Update(customerAccount);
@@ -49,9 +51,11 @@ namespace PayGateDotNetServer.BLL
                     customerAccount.Balance -= transactionRequest.Amount;
                     dBContext.CustomerAccounts.Update(customerAccount);
                 }
+                await dBContext.SaveChangesAsync();
+
+                return transaction;
             }
-            await dBContext.SaveChangesAsync();
-            return transaction;
+            return null;
         }
 
         public TransactionReportResponse GetCustomerTransaction(int custId, int accountId)
