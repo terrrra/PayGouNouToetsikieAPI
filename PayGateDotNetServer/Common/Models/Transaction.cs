@@ -12,12 +12,14 @@ namespace PayGateDotNetServer.Common.Models
     {
         [Key]
         public int Id { get; set; }
-        //Customer Foreign Key Entry
+
         [ForeignKey ("Customer")]
         public int CustomerId {get; set;}
+        public Customer Customer { get; set; }
         //Account Foreign Key Entry
        [ForeignKey("Account")]
         public int AccountId {get; set;}
+        public Account Account {get;set;}
         //Amount and Reference
         public double Amount {get; set;}
         public string TransactionReference { get; set;}
