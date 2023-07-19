@@ -27,7 +27,7 @@ namespace PayGateDotNetServer.Controllers
 
             if (customerAccountTransaction.AddTransaction(transactionRequest).Result == null)
             {
-                return NotFound("Make Sure you have the right Keys Added. This Table has Link to the Account and the Customer Tables which form the Composite Key for the Table. Item Not Added");
+                return NotFound("Make Sure you have the right Keys Added. This Table has Link to the Account and the Customer Tables make sure Foreign Keys Exist in Parent Tables");
             }
 
             return Ok("Record has been created successfully");

@@ -37,9 +37,9 @@ namespace PayGateDotNetServer.Controllers
             
             var retrievedcustomer = customer.GetCustomer(id);
 
-            if (retrievedcustomer == null)
+            if (retrievedcustomer.Result == null)
             {
-                return NotFound();
+                return NotFound("Item Not Found in the Database");
             }
 
             return Ok(retrievedcustomer.Result);
