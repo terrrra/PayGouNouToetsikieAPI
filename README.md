@@ -1,4 +1,4 @@
-# PayGate .Net Test
+.Net Test - By Mr TS Makume
 ### Overview
 The aim of this test is to determine how compitent one is with regard to building a .Net apllication using good practices and proper architecture. In this excersise you will be building a REST Web API using the .Net Core 3 framework. You will not be required to build an interface/front end - all endpoints will be tested using an API Client (Postman, Insomnia).
 
